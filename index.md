@@ -13,35 +13,8 @@ github:
     user: ibombonato
     repo: poker-variance-presentation
 ---
-```{r, cache=FALSE, results=F, message=F, echo=F}
-library(shiny)
-library(markdown)
-library(zoo)
-```
-```{r, results=F, message=F, echo=F}
-simulateData <- function(winrate, sd, trials){
-        all <- data.frame()
-        allz <- zoo(all)
-        for(i in 1:trials){
-            n <- data.frame(X = cumsum(rnorm(1000, winrate/100, sd/100)))
-            nz <- zoo(n)        
-            allz <- cbind(allz, nz)
-        }
-        allz
-    }
-plotData <- function(x, winrate, sd, trials){
-        smean <- ifelse(trials > 1, rowMeans(x[nrow(x),]), (x[nrow(x),]))
-        plot(x, type = "l", plot.type = "single", col = 1:ncol(x)
-             , ylab ="Win buy-ins total"
-             , xlab = "Total hands played / 100. (Ex: 1000 = 100.000 hands)"
-             , main = paste(trials, "Simulations with", winrate, "bb/100 winrate and", sd, "SD"))
-        abline(h = 0, lwd = 2)
-        abline(h = smean, lty = 2, lwd = 2)
-}
-winrate <- 4
-sd <- 95
-trials <- 25
-```
+
+
 
 ## Purpose
 
@@ -61,12 +34,15 @@ That way, the players can have a clue for what to expect in terms of results (in
 
 ## What is the results? Real code run example:
 
-After you input your variables, in this case **winrate `r winrate`, sd `r sd` and `r trials` trials**, you will got a plot like the one bellow:
+After you input your variables, in this case **winrate 4, sd 95 and 25 trials**, you will got a plot like the one bellow:
 
-```{r, results='asis', message=F, echo=T, fig.height=5, fig.width=14, cache=FALSE}
+
+```r
 winrate <- 4;sd <- 95;trials <- 25
 plotData(simulateData(winrate, sd, trials), winrate, sd, trials)
 ```
+
+![plot of chunk unnamed-chunk-3](assets/fig/unnamed-chunk-3-1.png) 
 
 ---
 
