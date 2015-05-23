@@ -1,0 +1,7 @@
+name: Publish Document
+account: rpubs
+server: rpubs.com
+bundleId:
+        https://api.rpubs.com/api/v1/document/81960/305c7d72fe3d452baabf7bbf45120dd3
+url: http://rpubs.com/ibombonato/81960
+when: 1432417331.88162
